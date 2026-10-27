@@ -41,4 +41,36 @@ INSERT INTO enrollments (enrollment_id, student_id, course_id, grade) VALUES
 (2, 1, 2, 'B'),
 (3, 2, 1, 'B+'),
 (4, 2, 3, 'A-'),
+
+-- 1. All courses taken by one student (by name)
+SELECT s.name, c.course_name, e.grade
+FROM students s
+JOIN enrollments e ON s.student_id = e.student_id
+JOIN courses c ON e.course_id = c.course_id
+WHERE s.name = 'Michelle Mwikali';
+
+-- 2. All students enrolled in one course
+SELECT s.name, c.course_name
+FROM students s
+JOIN enrollments e ON s.student_id = e.student_id
+JOIN courses c ON e.course_id = c.course_id
+WHERE c.course_name = 'Data Science';
+
+-- 3. Number of students per course
+SELECT c.course_name, COUNT(e.student_id) AS student_count
+FROM courses c
+LEFT JOIN enrollments e ON c.course_id = e.course_id
+GROUP BY c.course_id, c.course_name;
+
+-- 4. Students who have no enrollments
+SELECT s.name
+FROM students s
+LEFT JOIN enrollments e ON s.student_id = e.student_id
+WHERE e.enrollment_id IS NULL;
+
+-- 5. Update one enrollment's grade
+UPDATE enrollments
+SET grade = 'A'
+WHERE enrollment_id = 3;
+    
 (5, 3, 3, 'A');
