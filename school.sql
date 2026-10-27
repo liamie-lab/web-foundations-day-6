@@ -22,3 +22,23 @@ CREATE TABLE enrollments (
     FOREIGN KEY (course_id) REFERENCES courses(course_id),
     UNIQUE (student_id, course_id)
 );
+
+-- Insert students
+INSERT INTO students (student_id, name, email) VALUES
+(1, 'Michelle Mwikali', 'michelle@example.com'),
+(2, 'Brian Otieno', 'brian@example.com'),
+(3, 'Grace Wanjiku', 'grace@example.com');
+
+-- Insert courses
+INSERT INTO courses (course_id, course_name, course_code) VALUES
+(1, 'Database Systems', 'DB101'),
+(2, 'Web Development', 'WD102'),
+(3, 'Data Science', 'DS103');
+
+-- Insert enrollments
+INSERT INTO enrollments (enrollment_id, student_id, course_id, grade) VALUES
+(1, 1, 1, 'A'),
+(2, 1, 2, 'B'),
+(3, 2, 1, 'B+'),
+(4, 2, 3, 'A-'),
+(5, 3, 3, 'A');
